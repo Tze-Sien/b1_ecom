@@ -13,7 +13,7 @@
             $cateogryqr = "SELECT * FROM categories";
 			$categories = mysqli_query($cn, $cateogryqr);
 ?>
-			<form class="col-md-6 mx-auto" method="POST" action="/controllers/edit_item.php?id=<?php echo $_GET['id'];?>" enctype="multipart/form-data">
+			<form class="col-md-6 mx-auto" method="POST" action="/routes/edit_item.php?id=<?php echo $_GET['id'];?>" enctype="multipart/form-data">
 				<div class="form-group">
 					<label>Name</label>
 					<input value="<?php echo $item['name'] ?>" type="text" name="product_name" class="form-control">

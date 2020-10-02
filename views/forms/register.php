@@ -3,7 +3,7 @@
     function get_content() {
 ?>
 
-    <form class="col-md-6 mx-auto py-4" method="POST" action="/controllers/add_user.php">
+    <form class="col-md-6 mx-auto py-4" method="POST" action="/routes/createuser.php">
         <div class="form-group">
             <label for="firstname">First Name</label>
             <input type="text" name="firstname" class="form-control">

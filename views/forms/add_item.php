@@ -1,6 +1,4 @@
 <?php	
-		
-
 		require "../../middleware/auth.php";
 		check_admin();
 
@@ -10,7 +8,7 @@
 			$query = "SELECT * FROM categories";
 			$items = mysqli_query($cn, $query);
 ?>
-			<form class="col-md-6 mx-auto" method="POST" action="/controllers/add_item.php" enctype="multipart/form-data">
+			<form class="col-md-6 mx-auto" method="POST" action="/routes/add_item.php" enctype="multipart/form-data">
 				<div class="form-group">
 					<label>Name</label>
 					<input type="text" name="product_name" class="form-control">

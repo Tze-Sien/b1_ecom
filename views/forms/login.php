@@ -3,7 +3,7 @@
     function get_content() {
 ?>
 
-    <form class="col-md-6 mx-auto py-4" method="POST" action="/controllers/login.php">
+    <form class="col-md-6 mx-auto py-4" method="POST" action="/routes/login.php">
         <div class="form-group">
             <label for="username">Username</label>
             <input type="text" name="username" class="form-control">

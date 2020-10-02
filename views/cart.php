@@ -2,7 +2,7 @@
 session_start();
 $title = "Cart";
 function get_content(){
-	require '../controllers/connection.php';	
+	require '../controllers/connection.php';
 	if(isset($_SESSION['cart']) && count($_SESSION['cart'])):
 		?>
 	<div class="container py-5">
@@ -29,18 +29,18 @@ function get_content(){
 						<td><?php echo $item['name']; ?></td>
 						<td><?php echo $item['price']; ?></td>
 						<td>
-							<form method="POST" action="/controllers/update_cart.php">
+							<form method="POST" action="/routes/edit_cart.php">
 								<input type="hidden" name="id" value="<?php echo $item['id']; ?>">
 								<input type="number" name="quantity" value="<?php echo $quantity?>" class = "form-control quantity_input">
 							</form>
 						</td>
 						<td><?php echo $subtotal; ?></td>
-						<td><a href="/controllers/delete_cart_item.php?id=<?php echo $item['id'] ?>" class="btn btn-danger">Delete</a></td>
+						<td><a href="/routes/delete_cart.php?id=<?php echo $item['id'] ?>" class="btn btn-danger">Delete</a></td>
 				</tr>
 				<?php endforeach; ?>	
 				</tr>
                 <tr>
-					<td><a href="/controllers/empty_cart.php" class="btn btn-danger">Empty Cart</a></td>
+					<td><a href="/routes/empty_cart.php" class="btn btn-danger">Empty Cart</a></td>
 					<td>
                         <button href="/controlers/checkout.php" 
                                 class="btn btn-success" 
@@ -68,7 +68,7 @@ function get_content(){
 					</div>
 					<div class="modal-footer">
 						<button class="btn btn-secondary" data-dismiss="modal">Close</button>
-						<a href="/controllers/checkout.php" class="btn btn-sucess">Checkout</a>
+						<a href="/routes/checkout_cash.php" class="btn btn-sucess">Checkout</a>
 					</div>
 				</div>
 			</div>
@@ -95,8 +95,7 @@ function get_content(){
 				},
 				onApprove: function(data, actions) {
 					return actions.order.capture().then(function(details) {
-						alert('Transaction Completed by ' + details.payer.name.given_name);
-						console.log(data);
+						window.location.replace("/routes/checkout_paypal.php");
 					})
 				}
 			}).render('#paypal-button-container');

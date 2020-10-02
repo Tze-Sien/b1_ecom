@@ -3,11 +3,31 @@
 	$title = "Catalog";
 	function get_content() {
 	require "controllers/connection.php";
-	$query = "SELECT * FROM items";
-	$items = mysqli_query($cn, $query);
+	if(isset($_GET['id'])){
+		$categoryid = $_GET['id'];
+	}else{
+		$categoryid = -1;
+	}
+	if($categoryid == -1){
+		$query = "SELECT * FROM items";
+		$items = mysqli_query($cn, $query);
+	}else{
+		$query = "SELECT * FROM items WHERE category_id = $categoryid";
+		$items = mysqli_query($cn, $query);
+	}
+
+	$categoryquery = "SELECT * FROM categories";
+	$categories = mysqli_query($cn, $categoryquery);
 	?>
 	<div class="container">
 		<h2 class="py-5">Catalog</h2>
+
+		<select onchange="select()" id="select">
+			<?php foreach($categories as $category): ?>
+				<option  value="<?php echo $category['id']?>" <?php if($category['id'] ==  $categoryid){echo "selected";}?>><?php echo $category['name']?></option>
+			<?php endforeach; ?>
+		</select>
+
 		<div class="row">
 			<?php foreach($items as $item): ?>
 				<div class="col-md-4 py-5">
@@ -35,6 +55,12 @@
 	</div>
 
     <script>
+
+		function select() {
+			let id = document.getElementById('select').value;
+			location.replace(`/index.php?id=${id}`);
+		}
+
 		let addToCartButtons = document.querySelectorAll('.addToCart');
 		addToCartButtons.forEach( element => {
 			element.addEventListener('click', () => {
@@ -46,7 +72,7 @@
 				formBody.append('quantity', quantity);
 
 
-				fetch('controllers/add_to_cart.php',{
+				fetch('routes/add_to_cart.php',{
 					method: "POST",
 					body: formBody
 				})

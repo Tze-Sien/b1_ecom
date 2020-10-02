@@ -38,7 +38,7 @@ function get_content() {
 						Close
 					</button>
 					<a class="btn btn-danger"
-					href="/controllers/delete_item.php?id=<?php echo $item['id'] ?>">
+					href="/routes/delete_item.php?id=<?php echo $item['id'] ?>">
 						Delete
 					</a>
 				</div>

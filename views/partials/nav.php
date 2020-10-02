@@ -9,7 +9,7 @@
       <?php if(isset($_SESSION['user_details']) && $_SESSION['user_details']['isAdmin']): ?>
       <a class="nav-link" href="/views/forms/add_item.php">Add Item</a>
       <a class="nav-link" href="/views/transaction.php">Transactions</a>
-      <a class="nav-link" href="/controllers/logout.php">Logout</a>
+      <a class="nav-link" href="/routes/logout.php">Logout</a>
       <?php elseif(isset($_SESSION['user_details']) && !$_SESSION['user_details']['isAdmin']):?>
       <a class="nav-link" href="/views/cart.php">Cart
         <span class="badge badge-info" id="cart_count">
@@ -21,10 +21,15 @@
         </span>
       </a>
       <a class="nav-link" href="/views/transaction.php">Transactions</a>
-      <a class="nav-link" href="/views/forms/logout.php">Logout</a>
+      <a class="nav-link" href="/routes/logout.php">Logout(
+        <?php 
+          if(isset($_SESSION['user_details'])){
+            echo $_SESSION['user_details']['username'];
+          }
+        ?> )</a>
       <?php else:?>
-      <a class="nav-link" href="/views/forms/login.php">Login</a>
-      <a class="nav-link" href="/views/forms/register.php">Register</a>
+        <a class="nav-link" href="/views/forms/login.php">Login</a>
+        <a class="nav-link" href="/views/forms/register.php">Register</a>
       <?php endif; ?>
     </div>
   </div>

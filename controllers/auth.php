@@ -57,15 +57,15 @@
                 // Send an Email
                 // Create the Transport
                 $transport = (new Swift_SmtpTransport('smtp.gmail.com', 587, 'tls'))
-                ->setUsername('s1i2e3n4c5h6o7o@gmail.com')
-                ->setPassword('157148285608');
+                ->setUsername('')
+                ->setPassword('');
 
                 // Create the Mailer using your created Transport
                 $mailer = new Swift_Mailer($transport);
 
                 // Create a message
                 $message = (new Swift_Message('B1-ECOM Registration'))
-                ->setFrom(['chootzesien@gmail.com' => 'Tze Sien'])
+                ->setFrom(['<email>' => '<username>'])
                 ->setTo([$post['email'] => $post['firstname']])
                 ->setBody('Thank you for registering on B1-ECOM');
 

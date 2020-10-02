@@ -53,7 +53,7 @@
 
                 mysqli_query($cn, $query);
                 mysqli_close($cn);
-
+                header('Location: /');
                 // Send an Email
                 // Create the Transport
                 $transport = (new Swift_SmtpTransport('smtp.gmail.com', 587, 'tls'))
@@ -72,7 +72,7 @@
                 // Send the message
                 $result = $mailer->send($message);
 
-                header('Location: /');
+                
             }
         }
 
